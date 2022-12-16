@@ -14,7 +14,7 @@ export default function App() {
     <Router>
       <Navbar />
 
-      <div className="py-5 my-lg-5"></div>
+      <div className="py-5"></div>
 
         <Routes>
           <Route path="/" element={<Home />} />

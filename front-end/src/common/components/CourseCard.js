@@ -1,22 +1,32 @@
 import React from 'react';
 import styled from "styled-components";
 
-const WrapperCard = styled.div`
-  min-width: 290px;
-  aspect-ratio: 250 / 250;
-  width: calc(100vw/6);
-
+const WrapperCard = styled.span`
+  aspect-ratio: 288 / 336;
   padding: 2rem 1.3rem;
 
   position: relative;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: ${props => props.hasTotalCourseCategory ? 'center' : 'space-between'};
 
   box-shadow: 0 0 0.5rem 0 #00000033;
   border: 1px solid #80808080;
   border-radius: 10px;
+
+  ${props => {
+    if(props.hasTotalCourseCategory) {
+      return `
+        & > :first-child {display : none}
+        background: var(--theme-red);
+
+        & > :last-child {
+          border: none;
+        }
+      `;
+    }
+  }}
 `;
 
 const CourseCategory = styled.span`
@@ -30,7 +40,6 @@ const CourseCategory = styled.span`
 
 const CourseTitle = styled.h6`
   color: #413e4b;
-  font-family: montserrat,Sans-serif;
   font-size: 18px;
   font-weight: 700;
 
@@ -88,11 +97,12 @@ function CourseCard({
   description,
   category,
   url,
-  rank
+  rank,
+  totalCoursesCategory,
 }) {
     return (
-        <WrapperCard>
-          <div>
+        <WrapperCard hasTotalCourseCategory={!!totalCoursesCategory}>
+          <div> 
             <CourseCategory>
               {category}
             </CourseCategory>
@@ -104,7 +114,7 @@ function CourseCard({
 
           <CheckCourse>
             <a href="#">
-              Conheça o curso
+              {totalCoursesCategory ? `Mais de ${totalCoursesCategory - 1 } cursos!` : "Conheça o curso"}
             </a>
           </CheckCourse>
 

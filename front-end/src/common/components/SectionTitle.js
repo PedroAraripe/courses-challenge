@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const SubTitle = styled.div`
   color: #cf2020;
-  font-family: montserrat,Sans-serif;
   font-size: 16px;
   font-weight: 400;
   text-transform: uppercase;
@@ -11,11 +10,23 @@ const SubTitle = styled.div`
 
 const MainTitle = styled.h3`
   color: #413e4b;
-  font-family: montserrat,Sans-serif;
   font-size: 32px;
   font-weight: 700;
   text-transform: none;
   line-height: 1.4em;
+`;
+
+const CheckAllCourses = styled.span`
+  &, & > * {
+    color: black;
+    text-decoration: none;
+
+    transition: color 0.3s;
+
+    &:hover {
+      color: var(--theme-red);
+    }
+  }
 `;
 
 function SectionTitle({
@@ -30,6 +41,12 @@ function SectionTitle({
         <MainTitle>
           {title}
         </MainTitle>
+
+        <CheckAllCourses>
+          <a href="#">
+            Ver tudo
+          </a>
+        </CheckAllCourses>
       </div>
     );
   }

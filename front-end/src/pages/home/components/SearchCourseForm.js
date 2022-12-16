@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import styled from "styled-components";
 
@@ -5,9 +6,9 @@ const SearchInput = styled.input`
   font-size: 15px;
   font-weight: 600;
   border: none;
-  background: #f4f2f0;
   border-radius: 10px;
   color: #81807f;
+  background: transparent;
 
   ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #afaead;
@@ -24,7 +25,6 @@ const SearchInput = styled.input`
 
   &:focus-visible {
     outline: 0;
-    box-shadow: 0 0 0.1rem #00000040;
   }
 `
 const handleSubmit = (event) => {
@@ -36,7 +36,9 @@ const handleSubmit = (event) => {
 
 function SearchCourseForm() {
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="d-flex align-items-center" style={{
+          background: "#f4f2f0",
+        }} >
           <SearchInput
             placeholder="Qual curso você está procurando?"
             type="search"
@@ -44,6 +46,7 @@ function SearchCourseForm() {
             title="Pesquisar"
             className='w-100 p-3'
           />
+          <FontAwesomeIcon icon="search" className='me-2' style={{color: 'var(--theme-red)'}} />
         </form>
     );
   }

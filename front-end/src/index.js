@@ -12,6 +12,7 @@ import {
   faCheck,
   faPhoneAlt,
   faUser,
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 
 import './styles/global.css';
@@ -19,10 +20,16 @@ import './styles/global.css';
 import App from './App';
 import Footer from './common/components/Footer';
 
+import '@splidejs/react-splide/css';
+import '@splidejs/react-splide/css/skyblue';
+import '@splidejs/react-splide/css/sea-green';
+import '@splidejs/react-splide/css/core';
+
 library.add(
   faCheck,
   faPhoneAlt,
-  faUser
+  faUser,
+  faSearch,
 )
 
 const WrapperContainerX = styled.div`
