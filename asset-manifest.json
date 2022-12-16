@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/watch-courses-challenge/static/css/main.10b2e8c7.css",
+    "main.js": "/watch-courses-challenge/static/js/main.5d913c93.js",
+    "index.html": "/watch-courses-challenge/index.html",
+    "main.10b2e8c7.css.map": "/watch-courses-challenge/static/css/main.10b2e8c7.css.map",
+    "main.5d913c93.js.map": "/watch-courses-challenge/static/js/main.5d913c93.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.10b2e8c7.css",
+    "static/js/main.5d913c93.js"
+  ]
+}
