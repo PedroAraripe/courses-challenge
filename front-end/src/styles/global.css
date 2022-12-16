@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --theme-red: hsl(359deg 74% 55%);
+  --theme-white: hsl(0 60% 95%);
+}
+
+html,body {
+  background: #f9f8f7;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* courses style*/
+
+.white-to-red-button {
+  font-family: poppins,Sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+
+  padding: 0.7rem;
+
+  border-radius: 6px;
+  border: 2px solid var(--theme-red);
+  
+  color: var(--theme-red);
+
+  transition: all 0.3s;
+}
+
+.white-to-red-button:hover {
+  color: white;
+
+  background-color: var(--theme-red);
+}
