@@ -9,12 +9,11 @@ const WrapperFooter = styled.footer`
 
 function FooterSection() {
     return (
-        <WrapperFooter className='p-5 d-flex align-items-center justify-content-center text-center text-capitalize'>
+        <WrapperFooter className='p-5 text-center text-capitalize'>
             <span style={{color: "gray"}}>
-                Designed & Built by
-            </span>
-            <a href="https://github.com/PedroAraripe" style={{textDecoration: 'none', color: "gray"}}>
-                Lucas Araripe
+                I don't own this product! This is a challenge passed by
+            </span> <a href="https://www.cursobeta.com.br/" style={{textDecoration: 'none', color: "var(--theme-red)"}}>
+                Curso Beta
             </a>
         </WrapperFooter>
     );
