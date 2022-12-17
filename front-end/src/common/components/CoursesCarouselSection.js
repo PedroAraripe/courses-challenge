@@ -34,7 +34,7 @@ function CoursesCarouselSection({
             aria-label="Top 10 courses"
           >
             {courses.map((course, index) => (
-              <SplideSlide>
+              <SplideSlide key={index}>
                 <CourseCard
                   name={course.name}
                   category={course.category}

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import { MainTitle, SubTitle } from './styles/sectionTexts';
+import { MainTitle, SubTitle } from '../styles';
 
 const CheckAllCourses = styled.span`
   &, & > * {

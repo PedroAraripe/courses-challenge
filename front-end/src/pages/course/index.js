@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import ContainerSpacement from '../../common/components/ContainerSpacement';
-import { MainTitle } from '../../common/components/styles/sectionTexts';
+import { MainTitle } from '../../common/styles';
 
 import courses from '../../common/constants/courses';
 import CardCoursePromoteSell from './components/CardCoursePromoteSell';

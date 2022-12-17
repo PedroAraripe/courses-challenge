@@ -4,9 +4,25 @@ import SearchCourseForm from '../../pages/home/components/SearchCourseForm.js';
 import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FastNavItem } from '../styles.js';
+
+const whatsAppLink = 'https://api.whatsapp.com/send/?phone=552140032140&text=Oi,%20me%20ajuda%20aqui...%20';
+const fastNavItems = [
+  {
+    name: "Início",
+    path: "/"
+  },
+  {
+    name: "Todos os cursos",
+    path: "/courses/"
+  },
+  {
+    name: "Meus cursos",
+    path: "/my-courses/"
+  },
+];
 
 export default function Navbar() {
-  const whatsAppLink = 'https://api.whatsapp.com/send/?phone=552140032140&text=Oi,%20me%20ajuda%20aqui...%20';
 
   return (
     <div>
@@ -51,10 +67,10 @@ export default function Navbar() {
         }}
       >
         <ContainerSpacement>
-          <div className="row my-lg-5 align-items-center">
+          <div className="row mt-lg-5 mb-lg-4 align-items-center">
             <div className='col-lg-3'>
               <a href="#">
-                <img width="199" height="30" src="https://www.cursobeta.com.br/wp-content/uploads/sites/4/2022/07/Logo-1.svg" class="attachment-full size-full" alt="Logo Curso Beta" />
+                <img width="199" height="30" src="https://www.cursobeta.com.br/wp-content/uploads/sites/4/2022/07/Logo-1.svg" className="attachment-full size-full" alt="Logo Curso Beta" />
               </a>
             </div>
 
@@ -70,6 +86,14 @@ export default function Navbar() {
                 <FontAwesomeIcon icon="user" className='me-2' />
                 Acessar Área do Aluno
             </Link>
+            </div>
+
+            <div className="col-lg-12 mt-4 d-flex justify-content-center">
+              {fastNavItems.map((nav, index) => (
+                <FastNavItem key={index} className={`${index ? 'ms-4' : ''}`}>
+                  {nav.name}
+                </FastNavItem>
+              ))}
             </div>
           </div>
         </ContainerSpacement>

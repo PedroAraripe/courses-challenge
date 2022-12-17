@@ -1,5 +1,5 @@
 import React from 'react';
-import { MainTitle } from '../../../common/components/styles/sectionTexts';
+import { MainTitle } from '../../../common/styles';
 import { BuyNow, WrapperCardSell } from '../styles';
 
 
