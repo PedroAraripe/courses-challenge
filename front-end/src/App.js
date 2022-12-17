@@ -5,8 +5,9 @@ import {
   HashRouter as Router,
 } from "react-router-dom";
 
-import Home from "./pages/home/index";
-import RepositoryTemplate from "./pages/ScriptArticle";
+import Home from "./pages/home/";
+import Courses from "./pages/courses/";
+import Course from "./pages/course/";
 import Navbar from "./common/components/Navbar";
 
 export default function App() {  
@@ -18,7 +19,8 @@ export default function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/scripts"  element={<RepositoryTemplate />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/course" element={<Course />} />
         </Routes>
     </Router>
   )

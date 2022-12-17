@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
 
 const WrapperCard = styled.span`
@@ -93,6 +94,7 @@ const CheckCourse = styled.div`
 
 
 function CourseCard({
+  id,
   name,
   description,
   category,
@@ -113,9 +115,11 @@ function CourseCard({
           </div>
 
           <CheckCourse>
-            <a href="#">
+            <Link
+              to={`/course/?id=${id}`}
+            >
               {totalCoursesCategory ? `Mais de ${totalCoursesCategory - 1 } cursos!` : "Conheça o curso"}
-            </a>
+            </Link>
           </CheckCourse>
 
         </WrapperCard>
