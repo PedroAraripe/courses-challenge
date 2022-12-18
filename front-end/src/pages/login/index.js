@@ -1,0 +1,58 @@
+import React from 'react';
+
+import ContainerSpacement from '../../common/components/ContainerSpacement';
+import { InputComp } from '../../common/styles';
+
+import { FormLoginWrapper, HelloLogin, WrapperLogin } from "./styles";
+
+function submitHandler(e) {
+    e.preventDefault();
+   const formData =  new FormData(document.querySelector('form'));
+
+   const login = e.target[0].value;
+   const password = e.target[1].value;
+
+   console.log({login, password})
+}
+
+export default function Home () {
+    
+    return (
+        <ContainerSpacement>
+            <WrapperLogin className='px-3 px-lg-5'>
+                <HelloLogin className='d-flex justify-content-center'>
+                    Bem-vindo(a) 😀
+                </HelloLogin>
+
+                <FormLoginWrapper onSubmit={submitHandler} className='d-flex flex-column align-items-center'>
+                    <InputComp
+                        placeholder="Login"
+                        type="text"
+                        name="login"
+                        title="Pesquisar"
+                        className='p-3'
+                    />
+
+                    <InputComp
+                        placeholder="Senha"
+                        type="password"
+                        name="password"
+                        title="Pesquisar"
+                        className='p-3 mt-3'
+                    />
+
+                    <button
+                        className='btn mt-5 w-100'
+                        style={{
+                            backgroundColor: "var(--theme-red)",
+                            filter: "grayscale(0.1)",
+                            color: 'white',
+                        }}
+                    > Entrar</button>
+                </FormLoginWrapper>
+
+                <div className="py-5"></div>
+            </WrapperLogin>
+        </ContainerSpacement>
+    )
+  }

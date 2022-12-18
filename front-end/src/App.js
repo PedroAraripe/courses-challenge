@@ -8,6 +8,7 @@ import {
 import Home from "./pages/home/";
 import Courses from "./pages/courses/";
 import Course from "./pages/course/";
+import Login from "./pages/login/";
 import Navbar from "./common/components/Navbar";
 
 export default function App() {  
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/course" element={<Course />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
     </Router>
   )
