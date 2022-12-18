@@ -16,7 +16,7 @@ const CourseDescription = styled.p`
 
 export default function Home () {
     const [searchParams] = useSearchParams();
-    const courseId = searchParams.get('id'); // "testCode"
+    const courseId = searchParams.get('id');
 
     const searchedCourse = courses.find(course => course.id == courseId);
     return (

@@ -49,7 +49,6 @@ function SearchCourseForm() {
             name="s"
             title="Pesquisar"
             className='w-100 p-3'
-            onChange={handleSubmit}
           />
           <FontAwesomeIcon icon="search" className='me-2' style={{color: 'var(--theme-red)'}} />
         </form>
