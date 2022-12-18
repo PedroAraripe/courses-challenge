@@ -148,7 +148,8 @@ export const coursesSlice = createSlice({
               category: category.categoryId
             }
           }),
-          title: category.title
+          title: category.title,
+          subTitle: "Categoria"
         }
       })
     },

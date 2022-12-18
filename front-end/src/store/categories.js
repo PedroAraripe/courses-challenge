@@ -22,9 +22,6 @@ export const categories = [
   {
     name: 'Cálculos',
   },
-  {
-    name: 'Cálculoskod kasd kasdkaspd kaspodkpasokdapsodk9123k',
-  },
 ].map((categorie, index) => {
   categorie.id = index + 1;
 
