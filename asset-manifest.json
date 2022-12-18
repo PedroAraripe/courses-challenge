@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/watch-courses-challenge/static/css/main.0496c80d.css",
-    "main.js": "/watch-courses-challenge/static/js/main.6be5bd2b.js",
+    "main.css": "/watch-courses-challenge/static/css/main.e52f2074.css",
+    "main.js": "/watch-courses-challenge/static/js/main.50285f6e.js",
     "index.html": "/watch-courses-challenge/index.html",
-    "main.0496c80d.css.map": "/watch-courses-challenge/static/css/main.0496c80d.css.map",
-    "main.6be5bd2b.js.map": "/watch-courses-challenge/static/js/main.6be5bd2b.js.map"
+    "main.e52f2074.css.map": "/watch-courses-challenge/static/css/main.e52f2074.css.map",
+    "main.50285f6e.js.map": "/watch-courses-challenge/static/js/main.50285f6e.js.map"
   },
   "entrypoints": [
-    "static/css/main.0496c80d.css",
-    "static/js/main.6be5bd2b.js"
+    "static/css/main.e52f2074.css",
+    "static/js/main.50285f6e.js"
   ]
 }
