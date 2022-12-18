@@ -9,25 +9,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/user.js';
 
 const whatsAppLink = 'https://api.whatsapp.com/send/?phone=552140032140&text=Oi,%20me%20ajuda%20aqui...%20';
-const fastNavItems = [
-  {
-    name: "Início",
-    path: "/"
-  },
-  {
-    name: "Todos os cursos",
-    path: "/courses"
-  },
-  {
-    name: "Meus cursos",
-    path: "/my-courses"
-  },
-];
 
 export default function Navbar() {
   const userCredentials = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
+  const fastNavItems = [
+    {
+      name: "Início",
+      path: "/"
+    },
+    {
+      name: "Todos os cursos",
+      path: "/courses"
+    },
+    {
+      name: "Meus cursos",
+      path: userCredentials ? "/my-courses" : "/login"
+    },
+  ];
 
   function handleLogout() {
     dispatch(logout());

@@ -45,22 +45,6 @@ export default function Home () {
                     hidePagination
                 />
             ))}
-
-            {/* <CoursesCarouselSection
-                title="Direito"
-                courses={courses}
-                subTitle="Categoria"
-                totalCoursesCategory={courseState.total}
-                hidePagination
-            />
-
-            <CoursesCarouselSection
-                title="Perícia Judicial"
-                courses={courses}
-                subTitle="Categoria"
-                totalCoursesCategory={courseState.total}
-                hidePagination
-            /> */}
         </div>
     )
   }

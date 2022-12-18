@@ -28,6 +28,7 @@ export default function Home () {
     }, [])
 
     const searchedCourse = courses.find(course => course.id == courseId);
+
     return (
         <ContainerSpacement>
             {searchedCourse ? (
@@ -83,7 +84,7 @@ export default function Home () {
                         </div>
 
                         <div className="col-lg-4 mt-5 mt-lg-0">
-                            <CardCoursePromoteSell />
+                            <CardCoursePromoteSell courseId={searchedCourse.id} />
                         </div>
                     </div>
                 </div>

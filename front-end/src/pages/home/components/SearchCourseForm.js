@@ -18,13 +18,15 @@ function SearchCourseForm() {
           background: "#f4f2f0",
         }} >
           <InputComp
-            placeholder="Qual curso você está procurando?"
+            placeholder="Que tal explorar um novo curso?"
             type="search"
             name="s"
             title="Pesquisar"
             className='w-100 p-3'
           />
-          <FontAwesomeIcon icon="search" className='me-2' style={{color: 'var(--theme-red)'}} />
+          <button className='border-0 background-transparent p-2'>
+            <FontAwesomeIcon icon="search" className='me-2' style={{color: 'var(--theme-red)'}} />
+          </button>
         </form>
     );
   }

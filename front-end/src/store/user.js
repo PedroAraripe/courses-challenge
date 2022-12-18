@@ -5,9 +5,13 @@ import { toastConfig } from '../common/configs';
 export const users = [
   {
     login: "admin",
+    role: "admin",
+    courses: []
   },
   {
     login: "aluno",
+    role: "user",
+    courses: []
   },
 ].map((student, index) => {
   student.id = index + 1;
@@ -20,6 +24,8 @@ export const userSlice = createSlice({
   name: 'categories',
   initialState: {
     user: null,
+    coursesIds: [],
+    courses: [],
   },
   reducers: {
     validateUser: (state, action) => {
@@ -51,6 +57,13 @@ export const userSlice = createSlice({
 
       toast.success('Deslogado com sucesso', toastConfig);
     },
+    buyCourse: (state, action) => {
+      const { courseId } = action.payload;
+
+      state.coursesIds.push(courseId);
+
+      console.log(state.user)
+    },
   },
 })
 
@@ -59,6 +72,7 @@ export const {
   validateUser,
   getUserInStorage,
   logout,
+  buyCourse,
 } = userSlice.actions
 
 export default userSlice.reducer
