@@ -30,60 +30,68 @@ export default function Home () {
     const searchedCourse = courses.find(course => course.id == courseId);
     return (
         <ContainerSpacement>
-            <div
-                style={{
-                    fontSize: '14px',
-                    fontWeight: '400',
-                    color: '#413E4B',
-                }}
-                className={`${searchedCourse ? 'text-uppercase mb-5' : 'd-none'}`}
-            >
-                INÍCIO » {searchedCourse.name}
-            </div>
-
-            <div className="row">
-                <div className="col-lg-8">
+            {searchedCourse ? (
+                <div>
                     <div
                         style={{
-                            maxWidth: '380px'
+                            fontSize: '14px',
+                            fontWeight: '400',
+                            color: '#413E4B',
                         }}
+                        className={`${searchedCourse ? 'text-uppercase mb-5' : 'd-none'}`}
                     >
-                        <MainTitle fw="800" className='mb-4'>
-                            Curso de {searchedCourse.name}
-                        </MainTitle>
-
-                        <CourseDescription>
-                            {searchedCourse.description}
-                        </CourseDescription>
+                        INÍCIO » {searchedCourse.name}
                     </div>
 
-                    <div
-                        style={{
-                            color: "var(--theme-red)",
-                            fontSize: '16px',
-                        }}
-                        className="fw-bold my-4"
-                    >
-                        MELHOR CURSO DE PERÍCIA DO MERCADO
-                    </div>
+                    <div className="row">
+                        <div className="col-lg-8">
+                            <div
+                                style={{
+                                    maxWidth: '380px'
+                                }}
+                            >
+                                <MainTitle fw="800" className='mb-4'>
+                                    Curso de {searchedCourse.name}
+                                </MainTitle>
 
-                    <div
-                        style={{
-                            color: "var(--theme-red)",
-                            fontSize: '12px',
-                            fontWeight: '500',
-                        }}
-                        className="pt-3"
-                    >
-                        Plataforma acessível  |  100% atualizado  |  Material disponível pra download
-                    </div>
+                                <CourseDescription>
+                                    {searchedCourse.description}
+                                </CourseDescription>
+                            </div>
 
+                            <div
+                                style={{
+                                    color: "var(--theme-red)",
+                                    fontSize: '16px',
+                                }}
+                                className="fw-bold my-4"
+                            >
+                                MELHOR CURSO DE PERÍCIA DO MERCADO
+                            </div>
+
+                            <div
+                                style={{
+                                    color: "var(--theme-red)",
+                                    fontSize: '12px',
+                                    fontWeight: '500',
+                                }}
+                                className="pt-3"
+                            >
+                                Plataforma acessível  |  100% atualizado  |  Material disponível pra download
+                            </div>
+
+                        </div>
+
+                        <div className="col-lg-4">
+                            <CardCoursePromoteSell />
+                        </div>
+                    </div>
                 </div>
-
-                <div className="col-lg-4">
-                    <CardCoursePromoteSell />
+            ): (
+                <div>
+                    Curso não encotrado
                 </div>
-            </div>
+            )}
 
             <div className="py-5"></div>            
         </ContainerSpacement>
