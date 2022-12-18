@@ -57,22 +57,24 @@ body {
   right: 0 !important;
 
   height: 100% !important;
-  width: 100px !important;
+  width: 80px !important;
   
   background: linear-gradient(to left, hsl(359deg 74% 15% / 60%), transparent) !important;
-  border-radius: 10px !important;
+  border-radius: unset !important;
   
   transition: all 0.3s;
-}
-
-.splide__arrow--next:hover {
-  /* background: linear-gradient(to left, #00000999, transparent) !important; */
 }
 
 .splide {
   padding-right: 0 !important;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+}
+
+@media (max-width: 992px) {
+  .splide {
+    padding-left: 0 !important;
+  }
 }
 
 .splide__arrow svg {

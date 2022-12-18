@@ -34,8 +34,19 @@ function CoursesCarouselSection({
     autoplay: true,
     pauseOnHover: true,
     resetProgress: false,
-    perPage: 5,
-    pagination: !hidePagination
+    perPage: 1.5,
+    pagination: !hidePagination,
+    breakpoints: {
+      100: {
+        perPage: 1.5,
+      },
+      992: {
+        perPage: 1.5,
+      },
+      9999: {
+        perPage: 5,
+      },
+    }
   };
 
   const showingCourses = courses?.length ? courses : loadingMockupCourses; 
