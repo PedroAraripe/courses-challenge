@@ -82,7 +82,7 @@ export default function Home () {
 
                         </div>
 
-                        <div className="col-lg-4">
+                        <div className="col-lg-4 mt-5 mt-lg-0">
                             <CardCoursePromoteSell />
                         </div>
                     </div>

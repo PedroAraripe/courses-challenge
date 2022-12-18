@@ -16,7 +16,11 @@ export const MainTitle = styled.h2`
 `;
 
 export const FastNavItem = styled.span`
-  padding: 0.5rem 1.8rem;
+  padding: 0.4rem 0.5rem;
+  
+  @media (min-width: 992px) {
+    padding: 0.5rem 1.8rem;
+  }
 
   font-size: 14px;
   

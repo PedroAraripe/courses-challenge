@@ -27,6 +27,7 @@ export default function Navbar() {
   return (
     <div>
       <div
+        className='d-none d-lg-block'
         style={{
           fontSize: '15px',
           fontWeight: '600',
@@ -67,21 +68,21 @@ export default function Navbar() {
         }}
       >
         <ContainerSpacement>
-          <div className="row mt-lg-5 mb-lg-4 align-items-center">
+          <div className="row mt-lg-5 mb-lg-4 align-items-center my-4 my-lg-0">
             <div className='col-lg-3'>
               <a href="#">
                 <img width="199" height="30" src="https://www.cursobeta.com.br/wp-content/uploads/sites/4/2022/07/Logo-1.svg" className="attachment-full size-full" alt="Logo Curso Beta" />
               </a>
             </div>
 
-            <div className="col-lg-6">
+            <div className="col-lg-6 mt-5 mb-3 my-lg-0">
               <SearchCourseForm />
             </div>
 
-            <div className="col-lg-3">
+            <div className="col-lg-3 d-flex">
             <Link
               to="/login"
-              className="white-to-red-button"
+              className="white-to-red-button w-100 mx-lg-3"
             >
                 <FontAwesomeIcon icon="user" className='me-2' />
                 Acessar Área do Aluno
