@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify';
+import { toastConfig } from '../common/configs';
 
 export const users = [
   {
@@ -28,17 +30,16 @@ export const userSlice = createSlice({
 
       })
 
-
       if(!userCredentials) {
-        return alert("Ops wrong credentials!");
-        
+        return toast.error('Usuário ou senha incorretos', toastConfig);
       }
 
       delete userCredentials.password;
       
       localStorage.setItem('user', JSON.stringify(userCredentials))
-
       state.user = userCredentials;
+
+      toast.success(`Seja bem vindo novamente ${userCredentials.login}! 😀`, toastConfig);
     },
     getUserInStorage: (state) => {
       const userCredentials = JSON.parse(localStorage.getItem('user'));
@@ -47,6 +48,8 @@ export const userSlice = createSlice({
     logout: (state) => {
       localStorage.removeItem('user');
       state.user = null;
+
+      toast.success('Deslogado com sucesso', toastConfig);
     },
   },
 })

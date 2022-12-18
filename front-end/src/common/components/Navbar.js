@@ -95,21 +95,24 @@ export default function Navbar() {
                 className="white-to-red-button w-100 mx-lg-3 d-flex align-items-center"
               >
                   <FontAwesomeIcon icon="user" className='me-2' />
+
                   <div className='flex-grow-1 d-flex justify-content-center'>
                     
-                  { userCredentials ? userCredentials.login : 'Área do Aluno'}
+                  { userCredentials ? userCredentials.login : 'Área de Login'}
                   </div>
               </Link>
 
-              <button
-                onClick={handleLogout}
-                className='bg-transparent btn border-0 h-100 p-2 d-flex align-items-center justify-content-center'
-                style={{
-                  color: 'var(--theme-red)'
-                }}
-              >
-                <FontAwesomeIcon icon="sign-out" className='me-2' />
-              </button>
+              {userCredentials ? (
+                <button
+                  onClick={handleLogout}
+                  className='bg-transparent btn border-0 h-100 p-2 d-flex align-items-center justify-content-center'
+                  style={{
+                    color: 'var(--theme-red)'
+                  }}
+                >
+                  <FontAwesomeIcon icon="sign-out" className='me-2' />
+                </button>
+              ) : null}
             </div>
 
             <div className="col-lg-12 mt-4 d-flex justify-content-center">

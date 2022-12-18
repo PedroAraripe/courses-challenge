@@ -5,6 +5,9 @@ import {
   HashRouter as Router,
 } from "react-router-dom";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Home from "./pages/home/";
 import Courses from "./pages/courses/";
 import Course from "./pages/course/";
@@ -26,12 +29,14 @@ export default function App() {
 
       <div className="py-5"></div>
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/course" element={<Course />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
+      <ToastContainer />
+      
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/courses" element={<Courses />} />
+        <Route path="/course" element={<Course />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </Router>
   )
 }
