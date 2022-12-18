@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import ContainerSpacement from '../../common/components/ContainerSpacement';
 import { MainTitle } from '../../common/styles';
+import { getCourses } from '../../store/courses';
 
-import courses from '../../common/constants/courses';
 import CardCoursePromoteSell from './components/CardCoursePromoteSell';
 
 const CourseDescription = styled.p`
@@ -17,6 +18,14 @@ const CourseDescription = styled.p`
 export default function Home () {
     const [searchParams] = useSearchParams();
     const courseId = searchParams.get('id');
+
+    const courseState = useSelector((state) => state.courses.value);
+    const courses = courseState.items;
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getCourses());
+    }, [])
 
     const searchedCourse = courses.find(course => course.id == courseId);
     return (

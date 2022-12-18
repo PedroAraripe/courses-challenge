@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import CoursesCarouselSection from '../../common/components/CoursesCarouselSection';
-import courses from '../../common/constants/courses';
+import { getCourses } from '../../store/courses';
 
 export default function Home () {
+    const courseState = useSelector((state) => state.courses.value);
+    const courses = courseState.items;
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getCourses());
+    }, [])
+
     return (
+
         <>
             <CoursesCarouselSection
                 title="Top 10 vendidos"
@@ -17,7 +27,7 @@ export default function Home () {
                 title="Direito"
                 courses={courses}
                 subTitle="Categoria"
-                totalCoursesCategory={90}
+                totalCoursesCategory={courseState.total}
                 hidePagination
             />
 
@@ -25,7 +35,7 @@ export default function Home () {
                 title="Perícia Judicial"
                 courses={courses}
                 subTitle="Categoria"
-                totalCoursesCategory={55}
+                totalCoursesCategory={courseState.total}
                 hidePagination
             />
         </>

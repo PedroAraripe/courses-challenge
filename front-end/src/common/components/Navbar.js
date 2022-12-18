@@ -90,17 +90,18 @@ export default function Navbar() {
 
             <div className="col-lg-12 mt-4 d-flex justify-content-center">
               {fastNavItems.map((nav, index) => (
-                <FastNavItem key={index} className={`${index ? 'ms-4' : ''}`}>
-                  <Link
-                    to={nav.path}
-                    style={{
-                      textDecoration: "none",
-                      color: "inherit"
-                    }}
-                  >
+                <Link
+                  key={index}
+                  to={nav.path}
+                  style={{
+                    textDecoration: "none",
+                    color: "inherit"
+                  }}
+                >
+                  <FastNavItem className={`${index ? 'ms-4' : ''}`}>
                     {nav.name}
-                  </Link>
-                </FastNavItem>
+                  </FastNavItem>
+                </Link>
               ))}
             </div>
           </div>

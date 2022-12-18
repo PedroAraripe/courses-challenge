@@ -96,10 +96,7 @@ const CheckCourse = styled.div`
 function CourseCard({
   id,
   name,
-  description,
   category,
-  url,
-  rank,
   totalCoursesCategory,
 }) {
     return (

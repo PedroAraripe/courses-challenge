@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import scriptsContentReduce from './scriptsContent';
+import courses from './courses';
+import categories from './categories';
 
 export default configureStore({
   reducer: {
-    scriptsContent : scriptsContentReduce,
+    courses,
+    categories,
   },
 });
