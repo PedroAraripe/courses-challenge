@@ -19,7 +19,7 @@ export default function Home () {
     const [searchParams] = useSearchParams();
     const courseId = searchParams.get('id');
 
-    const courseState = useSelector((state) => state.courses.value);
+    const courseState = useSelector((state) => state.courses.courses);
     const courses = courseState.items;
     const dispatch = useDispatch();
 

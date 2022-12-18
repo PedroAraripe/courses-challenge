@@ -12,7 +12,7 @@ import CardCoursePreview from './components/CardCoursePreview';
 import DropdownCategories from './components/DropdownCategories';
 
 export default function Home () {
-    const courseState = useSelector((state) => state.courses.value);
+    const courseState = useSelector((state) => state.courses.courses);
     const courses = courseState.items;
     const dispatch = useDispatch();
 

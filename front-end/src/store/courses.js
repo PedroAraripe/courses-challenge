@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { categoriesToShow } from '../pages/home/constants';
 import { categories } from './categories';
 
 const courses = [
@@ -87,7 +88,7 @@ const courses = [
       description: "Curso de pericia medica muito legal"
   },
 ].map((course, index) => {
-  const categoryCourse = categories.find(categorie => categorie.id === course.categoryId);
+  const categoryCourse = categories.find(category => category.id === course.categoryId);
 
   course.id = index + 1;
   course.name = `${course.id} ${course.name}`;
@@ -125,23 +126,38 @@ const getCoursesHelper = (action) => {
 export const coursesSlice = createSlice({
   name: 'courses',
   initialState: {
-    value: {
+    courses: {
       items: [],
       total: 0,
       start: null,
-      end: null
+      end: null,
     },
+    categories: {}
   },
   reducers: {
     getCourses: (state, action) => {
-      state.value = getCoursesHelper(action);
+      state.courses = getCoursesHelper(action);
+    },
+    getHomeCategories: (state, action) => {
+      categoriesToShow.map(category => {
+        state.categories[category.categoryId] = {
+          ...getCoursesHelper({
+            payload: {
+              start: 0,
+              end: 9,
+              category: category.categoryId
+            }
+          }),
+          title: category.title
+        }
+      })
     },
   },
 })
 
 export const {
   getCourses,
-  getCoursesByCategory,
+  getHomeCategories,
 } = coursesSlice.actions
 
 export default coursesSlice.reducer

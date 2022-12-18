@@ -2,29 +2,53 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CoursesCarouselSection from '../../common/components/CoursesCarouselSection';
-import { getCourses } from '../../store/courses';
+import { getCourses, getHomeCategories } from '../../store/courses';
 
 export default function Home () {
-    const courseState = useSelector((state) => state.courses.value);
-    const courses = courseState.items;
+    const topCourses = useSelector((state) => state.courses.courses.items);
+    const categoriesCoursesState = useSelector((state) => state.courses.categories);
+    const categoriesToShow = Object.keys(categoriesCoursesState);
+
     const dispatch = useDispatch();
 
-    // const homeCategoriesIDs = [1,2];
+    const bestCourses = [
+        {
+            title: "Top 10 vendidos",
+            subTitle: "Direito",
+            items: topCourses,
+        },
+    ];
 
+    const categoriesCourses = categoriesToShow
+    .map(categoryId => {
+        return categoriesCoursesState[categoryId]
+    })
+
+    const coursesToShowHomePage = [
+        ...bestCourses,
+        ...categoriesCourses
+    ];
+
+    
+    
     useEffect(() => {
-        dispatch(getCourses());
-    }, [])
+        dispatch(getCourses({start: 0, end: 9}));
+        dispatch(getHomeCategories());
+    }, []);
 
     return (
         <div>
-            <CoursesCarouselSection
-                title="Top 10 vendidos"
-                subTitle="Cursos"
-                courses={courses}
-                hidePagination
-            />
+            {coursesToShowHomePage.map((course,index) =>(
+                <CoursesCarouselSection
+                    key={index}
+                    title={course.title}
+                    subTitle={course.subTitle}
+                    courses={course.items}
+                    hidePagination
+                />
+            ))}
 
-            <CoursesCarouselSection
+            {/* <CoursesCarouselSection
                 title="Direito"
                 courses={courses}
                 subTitle="Categoria"
@@ -38,7 +62,7 @@ export default function Home () {
                 subTitle="Categoria"
                 totalCoursesCategory={courseState.total}
                 hidePagination
-            />
+            /> */}
         </div>
     )
   }
