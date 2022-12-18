@@ -14,6 +14,19 @@ function CoursesCarouselSection({
   hidePagination,
 }) {
 
+  const mockupCourse = {
+    name: '...',
+    categoryName: '...',
+  };
+
+  const loadingMockupCourses = [...Array(10).keys()]
+    .map((course, index) => {
+      course = JSON.parse(JSON.stringify(mockupCourse));
+      course.id = index + 1;
+
+      return course;
+    });
+
   const optionsSplide = {
     perMove: 1,
     type: "loop",
@@ -24,6 +37,8 @@ function CoursesCarouselSection({
     perPage: 5,
     pagination: !hidePagination
   };
+
+  const showingCourses = courses?.length ? courses : loadingMockupCourses; 
 
   return (
     <section className="mb-5">
@@ -37,7 +52,7 @@ function CoursesCarouselSection({
             options={optionsSplide}
             aria-label="Top 10 courses"
           >
-            {courses.map((course, index) => (
+            {showingCourses.map((course, index) => (
               <SplideSlide key={index}>
                 <CourseCard
                   name={course.name}
