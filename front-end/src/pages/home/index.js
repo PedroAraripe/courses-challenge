@@ -29,8 +29,6 @@ export default function Home () {
         ...categoriesCourses
     ];
 
-    
-    
     useEffect(() => {
         dispatch(getCourses({start: 0, end: 9}));
         dispatch(getHomeCategories());

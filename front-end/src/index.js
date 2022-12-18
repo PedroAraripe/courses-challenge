@@ -13,6 +13,7 @@ import {
   faPhoneAlt,
   faUser,
   faSearch,
+  faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
 
 import './styles/global.css';
@@ -31,6 +32,7 @@ library.add(
   faPhoneAlt,
   faUser,
   faSearch,
+  faSignOut,
 )
 
 const WrapperContainerX = styled.div`

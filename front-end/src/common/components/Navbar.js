@@ -1,10 +1,12 @@
 import React from 'react';
 import ContainerSpacement from './ContainerSpacement.js';
 import SearchCourseForm from '../../pages/home/components/SearchCourseForm.js';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FastNavItem } from '../styles.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../store/user.js';
 
 const whatsAppLink = 'https://api.whatsapp.com/send/?phone=552140032140&text=Oi,%20me%20ajuda%20aqui...%20';
 const fastNavItems = [
@@ -23,6 +25,14 @@ const fastNavItems = [
 ];
 
 export default function Navbar() {
+  const userCredentials = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    dispatch(logout());
+    navigate("/login");
+  }
 
   return (
     <div>
@@ -79,14 +89,27 @@ export default function Navbar() {
               <SearchCourseForm />
             </div>
 
-            <div className="col-lg-3 d-flex">
-            <Link
-              to="/login"
-              className="white-to-red-button w-100 mx-lg-3"
-            >
-                <FontAwesomeIcon icon="user" className='me-2' />
-                Acessar Área do Aluno
-            </Link>
+            <div className="col-lg-3 d-flex align-items-center">
+              <Link
+                to="/login"
+                className="white-to-red-button w-100 mx-lg-3 d-flex align-items-center"
+              >
+                  <FontAwesomeIcon icon="user" className='me-2' />
+                  <div className='flex-grow-1 d-flex justify-content-center'>
+                    
+                  { userCredentials ? userCredentials.login : 'Área do Aluno'}
+                  </div>
+              </Link>
+
+              <button
+                onClick={handleLogout}
+                className='bg-transparent btn border-0 h-100 p-2 d-flex align-items-center justify-content-center'
+                style={{
+                  color: 'var(--theme-red)'
+                }}
+              >
+                <FontAwesomeIcon icon="sign-out" className='me-2' />
+              </button>
             </div>
 
             <div className="col-lg-12 mt-4 d-flex justify-content-center">

@@ -1,22 +1,24 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import ContainerSpacement from '../../common/components/ContainerSpacement';
 import { InputComp } from '../../common/styles';
+import { validateUser } from '../../store/user';
 
 import { FormLoginWrapper, HelloLogin, WrapperLogin } from "./styles";
 
-function submitHandler(e) {
-    e.preventDefault();
-   const formData =  new FormData(document.querySelector('form'));
-
-   const login = e.target[0].value;
-   const password = e.target[1].value;
-
-   console.log({login, password})
-}
 
 export default function Home () {
-    
+    const dispatch = useDispatch();
+
+    function submitHandler(e) {
+        e.preventDefault();
+        
+        const login = e.target[0].value;
+        const password = e.target[1].value;
+        dispatch(validateUser({login, password}));
+    };
+
     return (
         <ContainerSpacement>
             <WrapperLogin className='px-3 px-lg-5'>
