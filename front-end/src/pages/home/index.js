@@ -9,13 +9,14 @@ export default function Home () {
     const courses = courseState.items;
     const dispatch = useDispatch();
 
+    // const homeCategoriesIDs = [1,2];
+
     useEffect(() => {
         dispatch(getCourses());
     }, [])
 
     return (
-
-        <>
+        <div>
             <CoursesCarouselSection
                 title="Top 10 vendidos"
                 subTitle="Cursos"
@@ -38,6 +39,6 @@ export default function Home () {
                 totalCoursesCategory={courseState.total}
                 hidePagination
             />
-        </>
+        </div>
     )
   }

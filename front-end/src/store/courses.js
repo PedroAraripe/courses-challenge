@@ -96,6 +96,32 @@ const courses = [
   return course;
 });
 
+const getCoursesHelper = (action) => {
+  const {start, end, category, search} = action?.payload ?? {
+    start: null,
+    end: null,
+    category: null,
+    search: null,
+  };
+
+  const correspondingCoursesTotal = courses
+    .filter(course => category ? course.categoryId == category : course)
+    .filter(course => search ? course.name.toLowerCase().includes(search.toLowerCase()) || course.description.toLowerCase().includes(search.toLowerCase()) : course);
+
+  let slicedItems = correspondingCoursesTotal;
+  
+  if(start != null && end != null) {
+    slicedItems = correspondingCoursesTotal.slice(start , end);
+  }
+
+  return {
+    items: slicedItems,
+    total: correspondingCoursesTotal.length,
+    start,
+    end
+  };
+}
+
 export const coursesSlice = createSlice({
   name: 'courses',
   initialState: {
@@ -108,35 +134,14 @@ export const coursesSlice = createSlice({
   },
   reducers: {
     getCourses: (state, action) => {
-      const {start, end, category, search} = action?.payload ?? {
-        start: null,
-        end: null,
-        category: null,
-        search: null,
-      };
-
-      const correspondingCoursesTotal = courses
-        .filter(course => category ? course.categoryId == category : course)
-        .filter(course => search ? course.name.toLowerCase().includes(search.toLowerCase()) || course.description.toLowerCase().includes(search.toLowerCase()) : course);
-
-      let slicedItems = correspondingCoursesTotal;
-      
-      if(start != null && end != null) {
-        slicedItems = correspondingCoursesTotal.slice(start , end);
-      }
-      
-      state.value = {
-        items: slicedItems,
-        total: correspondingCoursesTotal.length,
-        start,
-        end
-      }
+      state.value = getCoursesHelper(action);
     },
   },
 })
 
 export const {
-  getCourses
+  getCourses,
+  getCoursesByCategory,
 } = coursesSlice.actions
 
 export default coursesSlice.reducer
