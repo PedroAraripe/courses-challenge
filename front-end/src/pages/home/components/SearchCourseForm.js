@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const SearchInput = styled.input`
   font-size: 15px;
@@ -26,15 +27,18 @@ const SearchInput = styled.input`
   &:focus-visible {
     outline: 0;
   }
-`
-const handleSubmit = (event) => {
-  event.preventDefault();
-
-  const searchInputValue = event.target[0].value;
-  console.log(`Value of searchInput: ${searchInputValue}`)
-}
+`;
 
 function SearchCourseForm() {
+    const navigate = useNavigate();
+
+    const handleSubmit = (event) => {
+      event.preventDefault();
+    
+      const searchInputValue = event.target[0].value;
+      navigate(`/courses?s=${searchInputValue}`);
+    }
+
     return (
         <form onSubmit={handleSubmit} className="d-flex align-items-center" style={{
           background: "#f4f2f0",
@@ -45,6 +49,7 @@ function SearchCourseForm() {
             name="s"
             title="Pesquisar"
             className='w-100 p-3'
+            onChange={handleSubmit}
           />
           <FontAwesomeIcon icon="search" className='me-2' style={{color: 'var(--theme-red)'}} />
         </form>

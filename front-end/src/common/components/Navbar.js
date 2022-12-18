@@ -14,11 +14,11 @@ const fastNavItems = [
   },
   {
     name: "Todos os cursos",
-    path: "/courses/"
+    path: "/courses"
   },
   {
     name: "Meus cursos",
-    path: "/my-courses/"
+    path: "/my-courses"
   },
 ];
 
@@ -91,7 +91,15 @@ export default function Navbar() {
             <div className="col-lg-12 mt-4 d-flex justify-content-center">
               {fastNavItems.map((nav, index) => (
                 <FastNavItem key={index} className={`${index ? 'ms-4' : ''}`}>
-                  {nav.name}
+                  <Link
+                    to={nav.path}
+                    style={{
+                      textDecoration: "none",
+                      color: "inherit"
+                    }}
+                  >
+                    {nav.name}
+                  </Link>
                 </FastNavItem>
               ))}
             </div>

@@ -1,70 +1,41 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
+import ContainerSpacement from '../../common/components/ContainerSpacement';
 
-import CoursesCarouselSection from '../../common/components/CoursesCarouselSection';
+import courses from "../../common/constants/courses";
+import { MainTitle } from '../../common/styles';
+import CardCoursePreview from './components/CardCoursePreview';
 
 export default function Home () {
-    const courses = [
-        {
-            name: "Pericia médica",
-            category: "pericia judicial",
-            url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
-            description: "Curso de pericia medica muito legal"
-        },
-        {
-            name: "Pericia médicaPericia médicaPericia médicaPericia médica",
-            category: "pericia judicial",
-            url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
-            description: "Curso de pericia medica muito legal"
-        },
-        {
-            name: "Pericia médica",
-            category: "pericia judicial",
-            url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
-            description: "Curso de pericia medica muito legal"
-        },
-        {
-            name: "Pericia médica",
-            category: "pericia judicial",
-            url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
-            description: "Curso de pericia medica muito legal"
-        },
-        {
-            name: "Pericia médica",
-            category: "pericia judicial",
-            url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
-            description: "Curso de pericia medica muito legal"
-        },
-        {
-            name: "Pericia médica",
-            category: "pericia judicial",
-            url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
-            description: "Curso de pericia medica muito legal"
-        },
-        {
-            name: "Pericia médica",
-            category: "pericia judicial",
-            url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
-            description: "Curso de pericia medica muito legal"
-        },
-        {
-            name: "Pericia médica",
-            category: "pericia judicial",
-            url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
-            description: "Curso de pericia medica muito legal"
-        },
-        {
-            name: "Pericia médica",
-            category: "pericia judicial",
-            url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
-            description: "Curso de pericia medica muito legal"
-        },
-    ]
+    const [searchParams] = useSearchParams();
+    const searchParam = searchParams.get('s'); // "testCode"
+
+    const coursesCorresponding = courses.filter(course => {
+        return searchParam ? course.name.toLowerCase().includes(searchParam.toLowerCase()) : course;
+    });
 
     return (
-        <>
-            <div>
-                hello! atualmente na pagina courses
+        <ContainerSpacement>
+            <div className="d-flex flex-column align-items-center">
+                <MainTitle fw="800">
+                    Resultados da Pesquisa por: {searchParam}
+                </MainTitle>
+
+                <div className="py-5"></div>
+
+                <div className="row">
+                    {coursesCorresponding.map((course, index) =>(
+                        <div className='col-lg-4' key={index}>
+                            <CardCoursePreview
+                                id={course.id}
+                                name={course.name}
+                                description={course.description}
+                             />
+                        </div>
+                    ))}
+                </div>
+
             </div>
-        </>
+        </ContainerSpacement>
     )
   }

@@ -1,46 +1,34 @@
-import React from "react";
 import styled from "styled-components";
 
-const Title = styled.div`
-  margin: 0;
-  cursor: pointer;
-  width: fit-content;
+export const WrapperCard = styled.div`
+  box-shadow: 0 0 10px 0 rgb(0 0 0 / 15%);
+  
+  height: 250px;
+  
+  border-radius: 10px;
 
-  @media (min-width: 768px) {
-    margin-bottom: 3rem;
-  }
-
-  & * {
-    transition: all 0.5s;
-  }
-
-  & h1 {
-    color: ${(props) => props.themeColor ?? "white"};
-    margin-bottom: 0;
-    
-    :before {
-      color: ${(props) => props.asideColor ?? "white"};
-      content: "{ ";
-    }
-
-    :after {
-      color: ${(props) => props.asideColor ?? "white"};
-      content: " }";
-      margin-right: 1rem;
-    }
-  }
-
-  i:active {
-    animation: scale-big 3s linear forwards;
+  transition: all 0.3s;
+  
+  &:hover {
+    box-shadow: 0 0 30px 0 rgb(0 0 0 / 15%);
   }
 `;
 
-export const TitleSection = (props) => {
+export const TitleCard = styled.h3`
+  color: #413E4B;
+  font-size: 18px;
+  font-weight: 800;
+`;
 
-  return (
-    <Title onClick={props.onClick} themeColor={props.themeColor} className="mb-4 d-flex align-items-center">
-      <h1>{props.children}</h1>
-      {/* <i className="fa-solid fa-gear gear mt-1 mt-md-2"></i> */}
-    </Title>
-  );
-};
+export const DescriptionCard = styled.p`
+  color: #8B92A1;
+  font-size: 15px;
+  font-weight: 400;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
