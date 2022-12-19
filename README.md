@@ -11,7 +11,7 @@ Certifique-se de ter a versão mais recente do node instalada.
 ## 🚀 Credenciais
 
 ### Para logar como admin use as credenciais: 
-login: admin
+login: admin \n<br>
 senha: 123
 
 ### Para logar como aluno use as credenciais: 
