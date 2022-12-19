@@ -133,6 +133,7 @@ export const coursesSlice = createSlice({
       start: null,
       end: null,
     },
+    course: {},
     categories: {}
   },
   reducers: {
@@ -162,6 +163,14 @@ export const coursesSlice = createSlice({
       state.courses.items = state.courses.items.filter(course => course.id != id);
       state.total = state.courses.items.length;
     },
+    getCourse: (state, action) => {
+      const { id } = action?.payload;
+      
+      state.course = state.courses.items.find(course => course.id == id);
+    },
+    clearCourse: (state) => {
+      state.course = {};
+    },
   },
 })
 
@@ -169,6 +178,8 @@ export const {
   getCourses,
   getHomeCategories,
   removeCourse,
+  getCourse,
+  clearCourse,
 } = coursesSlice.actions
 
 export default coursesSlice.reducer

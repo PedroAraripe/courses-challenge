@@ -24,16 +24,18 @@ import { InputComp } from "./common/styles";
 export default function App() {  
   const dispatch = useDispatch();
 
-  const userState = useSelector((state) => state.user.value);
-  const userCourse = userState.course;
+  const courseState = useSelector((state) => state.courses);
+  const currentCourse = courseState.course;
 
-  const hasCurrentCourse = userCourse && Object.keys(userCourse);
+  const hasCurrentCourse = currentCourse && Object?.keys(currentCourse)?.length;
+
+  console.log(Object.keys(currentCourse))
   const {
       name,
       description,
       url
   } = hasCurrentCourse ?
-      userCourse : {
+      currentCourse : {
           name: "",
           description: "",
           url: "",
@@ -45,14 +47,14 @@ export default function App() {
 
   return (
     <Router>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{!hasCurrentCourse ? "Criando curso" : `Editando curso ${name}` }</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal-dialog modal-dialog-centered">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title" id="exampleModalLabel">{!hasCurrentCourse ? "Criando Curso" : `Editando Curso ${name}` }</h5>
+            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
+          <div className="modal-body">
             <InputComp
               placeholder="Título"
               type="text"
@@ -75,9 +77,9 @@ export default function App() {
               className='w-100 p-3'
             />
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            <button type="button" class="btn btn-success">Salvar</button>
+          <div className="modal-footer">
+            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" className="btn btn-success">Salvar</button>
           </div>
         </div>
       </div>

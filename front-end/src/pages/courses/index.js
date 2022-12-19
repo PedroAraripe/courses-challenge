@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
-import { getCourses } from "../../store/courses";
+import { clearCourse, getCourses } from "../../store/courses";
 
 import ContainerSpacement from '../../common/components/ContainerSpacement';
 import Pagination from '../../common/components/Paginator';
@@ -45,7 +45,12 @@ export default function Home () {
                     <DropdownCategories />
 
                     {isAdmin ? (
-                        <button className="btn btn-success mt-3"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button 
+                            onClick={() => dispatch(clearCourse())}
+                            className="btn btn-success mt-3"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                        >
                             Criar curso
                         </button>
                     ): null}
