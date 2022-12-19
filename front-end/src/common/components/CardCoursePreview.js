@@ -29,7 +29,8 @@ export default function CardCoursePreview ({
   name,
   description,
   id,
-  hasBoughtIt
+  hasBoughtIt,
+  canShowCrudBar
 }) {
   
   const userCredentials = useSelector((state) => state.user.value.user);
@@ -38,7 +39,7 @@ export default function CardCoursePreview ({
     return (
       <WrapperCard className="p-4 mb-4 d-flex flex-column justify-content-between">
         <div>
-          {isAdmin ? (
+          {isAdmin && canShowCrudBar ? (
             <CrudCourse id={id} />
           ) : null}
           <TitleCard className='mb-4'>

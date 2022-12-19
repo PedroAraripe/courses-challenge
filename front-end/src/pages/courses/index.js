@@ -199,6 +199,7 @@ export default function Home () {
                         courses.map((course, index) =>(
                             <div className='col-lg-4' key={index}>
                                 <CardCoursePreview
+                                    canShowCrudBar
                                     id={course.id}
                                     name={course.name}
                                     description={course.description}
