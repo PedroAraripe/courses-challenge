@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { getCategories } from "../../store/categories";
 import { WrapperDropdownCategorie } from "../styles";
 
-export default function DropdownCategories() {
+export default function DropdownCategories({passValue, id, setCategory}) {
   const categories = useSelector((state) => state.categories.value);
   const [dropdownText, setDropdownText] = useState('Todas');
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ export default function DropdownCategories() {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = searchParams.get('page') || 1;
   const searchParam = searchParams.get('s');
-  const category = searchParams.get('category');
+  const category = passValue ? "" : searchParams.get('category');
 
   useEffect(() => {
     dispatch(getCategories())
@@ -36,34 +36,41 @@ export default function DropdownCategories() {
   
   function handleChangeCategorie(category) {
     
-    const newSearchParams = {};
-    
-    if(searchParam) {
-      newSearchParams.s = searchParam;
-    }
-    
-    newSearchParams.page = currentPage;
-    newSearchParams.category = category?.id || "";
+    if(!passValue) {
+      const newSearchParams = {};
+      
+      if(searchParam) {
+        newSearchParams.s = searchParam;
+      }
+      
+      newSearchParams.page = currentPage;
+      newSearchParams.category = category?.id || "";
 
-    setSearchParams(newSearchParams);
+      return setSearchParams(newSearchParams);
+      
+    }
+
+    setDropdownText(category.name);
+    setCategory(category?.id);
   };
 
 
   return (
     <WrapperDropdownCategorie
       className="dropdown"
+      id={id}
     >
         Categoria: 
         <button
           className="dropdown-toggle"
           type="button"
-          id="dropdownMenuButton1"
+          id={`dropdownMenuButton-${id}`}
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
             {dropdownText}
         </button>
-        <ul className="dropdown-menu py-0" aria-labelledby="dropdownMenuButton1">
+        <ul className="dropdown-menu py-0" aria-labelledby={`dropdownMenuButton-${id}`}>
           <button
             onClick={() => handleChangeCategorie()}
             className="px-3 py-2"

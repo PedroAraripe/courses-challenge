@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
-import { clearCourse, getCourses } from "../../store/courses";
+import { clearCourse, createCourse, getCourses } from "../../store/courses";
 
 import ContainerSpacement from '../../common/components/ContainerSpacement';
 import Pagination from '../../common/components/Paginator';
@@ -9,17 +9,34 @@ import DropdownCategories from '../../common/components/DropdownCategories';
 import CardCoursePreview from '../../common/components/CardCoursePreview';
 
 import { perPage } from '../../common/constants/pagination';
-import { MainTitle } from '../../common/styles';
+import { InputComp, MainTitle } from '../../common/styles';
 import NotFoundSearch from '../../common/components/NotFoundSearch';
 
 import { courses as coursesData } from "../../store/courses"
+import { toast } from 'react-toastify';
+import { toastConfig } from '../../common/configs';
 
 export default function Home () {
-    const courseState = useSelector((state) => state.courses.courses);
-    const courses = courseState.items;
+    const courseState = useSelector((state) => state.courses);
+    const courses = courseState.courses.items;
     const dispatch = useDispatch();
+    const currentCourse = courseState.course;
+
+    const hasCurrentCourse = currentCourse && Object?.keys(currentCourse)?.length;
+
+    const {
+        currentCourseName,
+        currentCourseDescription,
+        currentCourseUrl
+    } = hasCurrentCourse ? currentCourse : {
+        name: "",
+        description: "",
+        url: "",
+    };
 
     const userCredentials = useSelector((state) => state.user.value.user);
+    const [categoryToCreate, setCategoryToCreate] = useState("");
+    
     const isAdmin = userCredentials?.role === "admin";
 
     const [searchParams] = useSearchParams();
@@ -30,19 +47,93 @@ export default function Home () {
     const start = currentPage * perPage - perPage;
     const end = start + perPage;
 
+    const submitHandler = (event) => {
+        event.preventDefault();
+    }
+
+    const handleCreate = (event) => {
+        event.preventDefault();
+    
+        const form = document.querySelector("#modal-form");
+    
+        const name = form[0].value;
+        const description = form[1].value;
+        const url = form[2].value;
+
+        if(!(name && description && url && categoryToCreate)) {
+          return toast.error('Preencha todos os campos.', toastConfig);
+          
+        }
+
+        const inputValues = {
+            name,
+            description,
+            url,
+            categoryId: categoryToCreate
+        }
+
+        console.log({inputValues})
+    
+        toast.success('Curso criado com sucesso!', toastConfig);
+    
+        dispatch(createCourse(inputValues));
+      }
+    
     useEffect(() => {
         dispatch(getCourses({start, end, category, search: searchParam}));
     }, [category, currentPage, searchParam, coursesData]);
     
     return (
         <ContainerSpacement>
+            
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content">
+                <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">{!hasCurrentCourse ? "Criando Curso" : `Editando Curso ${currentCourseName}` }</h5>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form onSubmit={submitHandler} id="modal-form" className="modal-body">
+                    <InputComp
+                    placeholder="Título"
+                    type="text"
+                    name="name"
+                    title="name"
+                    className='w-100 p-3'
+                    />
+                    <InputComp
+                    placeholder="Descrição"
+                    type="text"
+                    name="description"
+                    title="description"
+                    className='w-100 p-3'
+                    />
+                    <InputComp
+                    placeholder="Url"
+                    type="text"
+                    name="url"
+                    title="Url"
+                    className='w-100 p-3'
+                    />
+
+                    <div className='w-100 p-3'>
+                    <DropdownCategories id={1} passValue={true} setCategory={setCategoryToCreate} />
+                    </div>
+                </form>
+                <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" className="btn btn-success" onClick={handleCreate}>Salvar</button>
+                </div>
+                </div>
+            </div>
+            </div>
             <div className="d-flex flex-column align-items-center">
                 <div>
                     <MainTitle fw="800">
                         Resultados da Pesquisa por: {searchParam}
                     </MainTitle>
                     
-                    <DropdownCategories />
+                    <DropdownCategories id={2}  />
 
                     {isAdmin ? (
                         <button 
@@ -75,7 +166,7 @@ export default function Home () {
                 </div>
 
                 <Pagination
-                    totalItems={courseState.total}
+                    totalItems={courseState.courses.total}
                     currentPage={currentPage}
                 />
             </div>

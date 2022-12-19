@@ -4,7 +4,6 @@ import { toastConfig } from '../common/configs';
 import { courses, getCoursesHelper } from './courses';
 
 const storeUserData = (stateValue) => {
-  console.log('atualizando o storage', stateValue, Object.keys(stateValue))
     localStorage.setItem('user', JSON.stringify(stateValue));
   // delete state.value.user.password;
 };
@@ -96,7 +95,6 @@ export const userSlice = createSlice({
     getUserCourse: (state, action) => {
       const { id } = action?.payload;
 
-      console.log({id})
       state.value.course = state.value.courses?.items?.find(course => course.id == id);
       // storeUserData(state.value);
     },

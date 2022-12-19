@@ -171,6 +171,22 @@ export const coursesSlice = createSlice({
     clearCourse: (state) => {
       state.course = {};
     },
+    createCourse: (state, action) => {
+      const {
+        name,
+        categoryId,
+        url,
+        description,
+      } = action?.payload;
+
+      courses.push({
+        name,
+        categoryId,
+        url,
+        description,
+        id: courses.length
+      })
+    },
   },
 })
 
@@ -180,6 +196,7 @@ export const {
   removeCourse,
   getCourse,
   clearCourse,
+  createCourse,
 } = coursesSlice.actions
 
 export default coursesSlice.reducer
