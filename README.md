@@ -2,7 +2,7 @@
 
 ## 💻 Requerimentos do projeto
 
-Certifique-se de ter a versão mais recente do node instalada.
+### Certifique-se de ter a versão mais recente do node instalada.
 <br>
 
 ## 🚀 Front-end deploy
