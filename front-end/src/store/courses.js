@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { categoriesToShow } from '../pages/home/constants';
 import { categories } from './categories';
 
-export const courses = [
+export let courses = [
   {
       name: "Pericia médica",
       categoryId: 1,
@@ -155,12 +155,20 @@ export const coursesSlice = createSlice({
         }
       })
     },
+    removeCourse: (state, action) => {
+      const { id } = action?.payload;
+      
+      courses = courses.filter(course => course.id != id);
+      state.courses.items = state.courses.items.filter(course => course.id != id);
+      state.total = state.courses.items.length;
+    },
   },
 })
 
 export const {
   getCourses,
   getHomeCategories,
+  removeCourse,
 } = coursesSlice.actions
 
 export default coursesSlice.reducer

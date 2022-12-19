@@ -12,6 +12,8 @@ import { perPage } from '../../common/constants/pagination';
 import { MainTitle } from '../../common/styles';
 import NotFoundSearch from '../../common/components/NotFoundSearch';
 
+import { courses as coursesData } from "../../store/courses"
+
 export default function Home () {
     const courseState = useSelector((state) => state.courses.courses);
     const courses = courseState.items;
@@ -30,7 +32,7 @@ export default function Home () {
 
     useEffect(() => {
         dispatch(getCourses({start, end, category, search: searchParam}));
-    }, [category, currentPage, searchParam]);
+    }, [category, currentPage, searchParam, coursesData]);
     
     return (
         <ContainerSpacement>
