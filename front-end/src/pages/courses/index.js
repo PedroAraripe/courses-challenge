@@ -45,8 +45,8 @@ export default function Home () {
                     <DropdownCategories />
 
                     {isAdmin ? (
-                        <button className="btn btn-success mt-3">
-                            Criar novo
+                        <button className="btn btn-success mt-3"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Criar curso
                         </button>
                     ): null}
                 </div>
