@@ -86,11 +86,18 @@ export const DescriptionCard = styled.p`
   font-size: 15px;
   font-weight: 400;
 
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  ${ props => {
+    if(!props.unlimitedLines) {
+      return `
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      `;
+    }
+  }
+  }
 `;
 
 

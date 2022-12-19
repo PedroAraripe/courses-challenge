@@ -6,85 +6,85 @@ export const courses = [
   {
       name: "Pericia médica",
       categoryId: 1,
-      url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
+      url: "https://www.youtube.com/embed/3LWzQrUiUEE",
       description: "Curso de pericia medica muito legalCurso de pericia medica muito legalCurso de pericia medica muito legalCurso de pericia medica muito legalCurso de pericia medica muito legalCurso de pericia medica muito legalCurso de pericia medica muito legalCurso de pericia medica muito legalCurso de pericia medica muito legalCurso de pericia medica muito legal"
   },
   {
       name: "Perícia e Avaliação de Imóveis",
       categoryId: 1,
-      url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
+      url: "https://www.youtube.com/embed/3LWzQrUiUEE",
       description: "O curso mais completo do Brasil em Formação de Peritos Judiciais em Avaliação de Imóveis te capacita a atuar nos tribunais com a formação e/ou conhecimento que você já tem."
   },
   {
       name: "Direito do ser humano",
       categoryId: 4,
-      url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
+      url: "https://www.youtube.com/embed/3LWzQrUiUEE",
       description: "O curso mais completo do Brasil em Formação de Peritos Judiciais em Avaliação de Imóveis te capacita a atuar nos tribunais com a formação e/ou conhecimento que você já tem."
   },
   {
       name: "Pericia médica",
       categoryId: 2,
-      url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
+      url: "https://www.youtube.com/embed/3LWzQrUiUEE",
       description: "Curso de pericia medica muito legal"
   },
   {
       name: "Pericia médica",
       categoryId: 3,
-      url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
+      url: "https://www.youtube.com/embed/3LWzQrUiUEE",
       description: "Curso de pericia medica muito legal"
   },
   {
       name: "Pericia médica",
       categoryId: 1,
-      url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
+      url: "https://www.youtube.com/embed/3LWzQrUiUEE",
       description: "Curso de pericia medica muito legal"
   },
   {
       name: "Pericia médica",
       categoryId: 4,
-      url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
+      url: "https://www.youtube.com/embed/3LWzQrUiUEE",
       description: "Curso de pericia medica muito legal"
   },
   {
       name: "Pericia médica",
       categoryId: 1,
-      url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
+      url: "https://www.youtube.com/embed/3LWzQrUiUEE",
       description: "Curso de pericia medica muito legal"
   },
   {
       name: "Pericia médica",
       categoryId: 5,
-      url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
+      url: "https://www.youtube.com/embed/3LWzQrUiUEE",
       description: "Curso de pericia medica muito legal"
   },
   {
       name: "Pericia médica",
       categoryId: 3,
-      url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
+      url: "https://www.youtube.com/embed/3LWzQrUiUEE",
       description: "Curso de pericia medica muito legal"
   },
   {
       name: "Pericia médica",
       categoryId: 1,
-      url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
+      url: "https://www.youtube.com/embed/3LWzQrUiUEE",
       description: "Curso de pericia medica muito legal"
   },
   {
       name: "dsadsa médica",
       categoryId: 1,
-      url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
+      url: "https://www.youtube.com/embed/3LWzQrUiUEE",
       description: "Curso de pericia medica muito legal"
   },
   {
       name: "Pericicxccca médica",
       categoryId: 2,
-      url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
+      url: "https://www.youtube.com/embed/3LWzQrUiUEE",
       description: "Curso de pericia medica muito legal"
   },
   {
       name: "Periciazzzzzz médica",
       categoryId: 3,
-      url: "https://www.youtube.com/watch?v=EGpWsi-9tSo&ab_channel=sky",
+      url: "https://www.youtube.com/embed/3LWzQrUiUEE",
       description: "Curso de pericia medica muito legal"
   },
 ].map((course, index) => {

@@ -113,7 +113,7 @@ function CourseCard({
 
           <CheckCourse>
             <Link
-              to={`/course/?id=${id}`}
+              to={`/course-preview?id=${id}`}
             >
               {totalCoursesCategory ? `Mais de ${totalCoursesCategory - 1 } cursos!` : "Conheça o curso"}
             </Link>

@@ -48,6 +48,7 @@ export default function Home () {
                         myCourses.items.map((course, index) =>(
                             <div className='col-lg-4' key={index}>
                                 <CardCoursePreview
+                                    hasBoughtIt
                                     id={course.id}
                                     name={course.name}
                                     description={course.description}

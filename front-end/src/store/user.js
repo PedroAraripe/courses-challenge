@@ -38,8 +38,11 @@ export const userSlice = createSlice({
   initialState: {
     value: {
       user: null,
-      coursesIds: [],
+      coursesIds: [
+        1,3,4
+      ],
       courses: [],
+      course: {},
     }
   },
   reducers: {
@@ -90,6 +93,13 @@ export const userSlice = createSlice({
       });
       // storeUserData(state.value);
     },
+    getUserCourse: (state, action) => {
+      const { id } = action?.payload;
+
+      console.log({id})
+      state.value.course = state.value.courses?.items?.find(course => course.id == id);
+      // storeUserData(state.value);
+    },
   },
 })
 
@@ -100,6 +110,7 @@ export const {
   logout,
   buyCourse,
   getUserCourses,
+  getUserCourse,
 } = userSlice.actions
 
 export default userSlice.reducer
