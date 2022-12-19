@@ -11,4 +11,8 @@ export const categoriesToShow = [
       title: "Desenvolvimento",
       categoryId: 4
   },
-];
+].map(course => {
+    course.seeAllRoute = `/courses?category=${course.categoryId}`;
+
+    return course;
+});

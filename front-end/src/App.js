@@ -8,13 +8,16 @@ import {
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { getUserInStorage } from "./store/user";
+import { useDispatch } from "react-redux";
+
+import Navbar from "./common/components/Navbar";
+
 import Home from "./pages/home/";
 import Courses from "./pages/courses/";
 import Course from "./pages/course/";
 import Login from "./pages/login/";
-import Navbar from "./common/components/Navbar";
-import { getUserInStorage } from "./store/user";
-import { useDispatch } from "react-redux";
+import MyCourses from "./pages/my-courses/";
 
 export default function App() {  
   const dispatch = useDispatch();
@@ -36,6 +39,7 @@ export default function App() {
         <Route path="/courses" element={<Courses />} />
         <Route path="/course" element={<Course />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/my-courses" element={<MyCourses />} />
       </Routes>
     </Router>
   )

@@ -9,7 +9,7 @@ import { buyCourse } from '../../../store/user';
 import { BuyNow, WrapperCardSell } from '../styles';
 
 export default function CardCoursePromoteSell ({courseId}) {
-  const userState = useSelector((state) => state.user);
+  const userState = useSelector((state) => state.user.value);
   const userCredentials = userState.user;
   const navigate = useNavigate();
   const dispatch = useDispatch();

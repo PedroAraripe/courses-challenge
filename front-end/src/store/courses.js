@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { categoriesToShow } from '../pages/home/constants';
 import { categories } from './categories';
 
-const courses = [
+export const courses = [
   {
       name: "Pericia médica",
       categoryId: 1,
@@ -97,8 +97,8 @@ const courses = [
   return course;
 });
 
-const getCoursesHelper = (action) => {
-  const {start, end, category, search} = action?.payload ?? {
+export const getCoursesHelper = (action) => {
+  const {start, end, category, search, coursesParams, isUserCourses} = action?.payload ?? {
     start: null,
     end: null,
     category: null,
@@ -106,6 +106,7 @@ const getCoursesHelper = (action) => {
   };
 
   const correspondingCoursesTotal = courses
+    .filter(course => isUserCourses ? coursesParams && coursesParams.includes(course.id): course)
     .filter(course => category ? course.categoryId == category : course)
     .filter(course => search ? course.name.toLowerCase().includes(search.toLowerCase()) || course.description.toLowerCase().includes(search.toLowerCase()) : course);
 
@@ -149,6 +150,7 @@ export const coursesSlice = createSlice({
             }
           }),
           title: category.title,
+          seeAllRoute: category.seeAllRoute,
           subTitle: "Categoria"
         }
       })

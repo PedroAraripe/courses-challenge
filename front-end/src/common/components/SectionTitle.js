@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import { MainTitle, SubTitle } from '../styles';
 
@@ -18,6 +19,7 @@ const CheckAllCourses = styled.span`
 function SectionTitle({
   title,
   subTitle,
+  seeAllRoute,
 }) {
     return (
       <div>
@@ -29,9 +31,9 @@ function SectionTitle({
         </MainTitle>
 
         <CheckAllCourses>
-          <a href="#">
+          <Link to={seeAllRoute}>
             Ver tudo
-          </a>
+          </Link>
         </CheckAllCourses>
       </div>
     );

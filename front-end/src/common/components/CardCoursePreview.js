@@ -9,7 +9,7 @@ export default function CardCoursePreview ({
   id
 }) {
   
-  const userCredentials = useSelector((state) => state.user.user);
+  const userCredentials = useSelector((state) => state.user.value.user);
   const isAdmin = userCredentials?.role === "admin";
 
     return (

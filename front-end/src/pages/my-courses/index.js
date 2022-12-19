@@ -8,12 +8,15 @@ import Pagination from '../../common/components/Paginator';
 
 import { perPage } from '../../common/constants/pagination';
 import { MainTitle } from '../../common/styles';
-import CardCoursePreview from './components/CardCoursePreview';
-import DropdownCategories from './components/DropdownCategories';
+import NotFoundSearch from '../../common/components/NotFoundSearch';
+import DropdownCategories from '../../common/components/DropdownCategories';
+import CardCoursePreview from '../../common/components/CardCoursePreview';
+import { getUserCourses } from '../../store/user';
 
 export default function Home () {
-    const courseState = useSelector((state) => state.courses.courses);
-    const courses = courseState.items;
+    const userState = useSelector((state) => state.user.value);
+    const userCredentials = userState.user;
+    const myCourses = userState.courses;
     const dispatch = useDispatch();
 
     const [searchParams] = useSearchParams();
@@ -25,8 +28,8 @@ export default function Home () {
     const end = start + perPage;
 
     useEffect(() => {
-        dispatch(getCourses({start, end, category, search: searchParam}));
-    }, [category, currentPage, searchParam]);
+        dispatch(getUserCourses({start, end, category}));
+    }, [category, currentPage, searchParam, userCredentials]);
     
     return (
         <ContainerSpacement>
@@ -35,26 +38,29 @@ export default function Home () {
                     <MainTitle fw="800">
                         Resultados da Pesquisa por: {searchParam}
                     </MainTitle>
-                    
                     <DropdownCategories />
                 </div>
 
                 <div className="py-5"></div>
 
                 <div className="row w-100">
-                    {courses.map((course, index) =>(
-                        <div className='col-lg-4' key={index}>
-                            <CardCoursePreview
-                                id={course.id}
-                                name={course.name}
-                                description={course.description}
-                             />
-                        </div>
-                    ))}
+                    {myCourses?.items?.length ? (
+                        myCourses.items.map((course, index) =>(
+                            <div className='col-lg-4' key={index}>
+                                <CardCoursePreview
+                                    id={course.id}
+                                    name={course.name}
+                                    description={course.description}
+                                 />
+                            </div>
+                        )) 
+                    ): (
+                        <NotFoundSearch />
+                    )}
                 </div>
 
                 <Pagination
-                    totalItems={courseState.total}
+                    totalItems={myCourses?.total || 0}
                     currentPage={currentPage}
                 />
             </div>

@@ -5,11 +5,12 @@ import { getCourses } from "../../store/courses";
 
 import ContainerSpacement from '../../common/components/ContainerSpacement';
 import Pagination from '../../common/components/Paginator';
+import DropdownCategories from '../../common/components/DropdownCategories';
+import CardCoursePreview from '../../common/components/CardCoursePreview';
 
 import { perPage } from '../../common/constants/pagination';
 import { MainTitle } from '../../common/styles';
-import CardCoursePreview from './components/CardCoursePreview';
-import DropdownCategories from './components/DropdownCategories';
+import NotFoundSearch from '../../common/components/NotFoundSearch';
 
 export default function Home () {
     const courseState = useSelector((state) => state.courses.courses);
@@ -42,15 +43,19 @@ export default function Home () {
                 <div className="py-5"></div>
 
                 <div className="row w-100">
-                    {courses.map((course, index) =>(
-                        <div className='col-lg-4' key={index}>
-                            <CardCoursePreview
-                                id={course.id}
-                                name={course.name}
-                                description={course.description}
-                             />
-                        </div>
-                    ))}
+                    {courses.length ? (
+                        courses.map((course, index) =>(
+                            <div className='col-lg-4' key={index}>
+                                <CardCoursePreview
+                                    id={course.id}
+                                    name={course.name}
+                                    description={course.description}
+                                 />
+                            </div>
+                        )) 
+                    ): (
+                        <NotFoundSearch />
+                    )}
                 </div>
 
                 <Pagination

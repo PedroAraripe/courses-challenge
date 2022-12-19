@@ -12,6 +12,7 @@ function CoursesCarouselSection({
   subTitle,
   totalCoursesCategory,
   hidePagination,
+  seeAllRoute,
 }) {
 
   const mockupCourse = {
@@ -54,7 +55,7 @@ function CoursesCarouselSection({
   return (
     <section className="mb-5">
       <ContainerSpacement>
-        <SectionTitle title={title} subTitle={subTitle} />
+        <SectionTitle title={title} subTitle={subTitle} seeAllRoute={seeAllRoute} />
       </ContainerSpacement>
 
       <div className="pt-4 ms-lg-4 ps-lg-5">

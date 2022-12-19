@@ -1,41 +1,8 @@
-import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories } from "../../../store/categories";
 import { useSearchParams } from "react-router-dom";
-
-const WrapperDropdownCategorie = styled.div`
-  display: flex;
-  align-items: center;
-
-  
-  & button {
-    border: none;
-    background: transparent;
-  }
-  
-  &, & *{
-    font-size: 14px !important;
-  }
-
-  & ul button {
-    display: block;
-
-    transition all 0.2s;
-    
-    text-align: left;
-    
-    width: 200px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-
-    &:hover {
-      background-color: #f6dede;
-    }
-    
-  }
-`;
+import { getCategories } from "../../store/categories";
+import { WrapperDropdownCategorie } from "../styles";
 
 export default function DropdownCategories() {
   const categories = useSelector((state) => state.categories.value);
@@ -59,6 +26,9 @@ export default function DropdownCategories() {
 
     } else if(category) {
       setDropdownText("Categoria indefinida");
+      
+    } else {
+      setDropdownText("Todas");
 
     }
     

@@ -1,6 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify';
 import { toastConfig } from '../common/configs';
+import { courses, getCoursesHelper } from './courses';
+
+const storeUserData = (stateValue) => {
+  console.log('atualizando o storage', stateValue, Object.keys(stateValue))
+    localStorage.setItem('user', JSON.stringify(stateValue));
+  // delete state.value.user.password;
+};
+const retrieveUserData = () => {
+    const userInStorage = localStorage.getItem('user');
+
+    return userInStorage ? JSON.parse(userInStorage) : null;
+  // delete state.value.user.password;
+}
 
 export const users = [
   {
@@ -23,9 +36,11 @@ export const users = [
 export const userSlice = createSlice({
   name: 'categories',
   initialState: {
-    user: null,
-    coursesIds: [],
-    courses: [],
+    value: {
+      user: null,
+      coursesIds: [],
+      courses: [],
+    }
   },
   reducers: {
     validateUser: (state, action) => {
@@ -40,29 +55,40 @@ export const userSlice = createSlice({
         return toast.error('Usuário ou senha incorretos', toastConfig);
       }
 
-      delete userCredentials.password;
-      
-      localStorage.setItem('user', JSON.stringify(userCredentials))
-      state.user = userCredentials;
+      state.value.user = userCredentials;
+      storeUserData(state.value);
 
       toast.success(`Seja bem vindo novamente ${userCredentials.login}! 😀`, toastConfig);
     },
     getUserInStorage: (state) => {
-      const userCredentials = JSON.parse(localStorage.getItem('user'));
-      state.user = userCredentials;
+      const userCredentials = retrieveUserData();
+
+      if(userCredentials) {
+        state.value = userCredentials;
+      }
+
     },
     logout: (state) => {
       localStorage.removeItem('user');
-      state.user = null;
+      state.value.user = null;
 
       toast.success('Deslogado com sucesso', toastConfig);
     },
     buyCourse: (state, action) => {
       const { courseId } = action.payload;
 
-      state.coursesIds.push(courseId);
-
-      console.log(state.user)
+      state.value.coursesIds.push(courseId);
+    },
+    getUserCourses: (state, action) => {
+      state.value.courses = getCoursesHelper({
+        payload: {
+          ...action.payload,
+          isUserCourses: true,
+          coursesParams: state.value.coursesIds
+        },
+        
+      });
+      // storeUserData(state.value);
     },
   },
 })
@@ -73,6 +99,7 @@ export const {
   getUserInStorage,
   logout,
   buyCourse,
+  getUserCourses,
 } = userSlice.actions
 
 export default userSlice.reducer

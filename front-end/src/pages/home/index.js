@@ -16,6 +16,7 @@ export default function Home () {
             title: "Top 10 vendidos",
             subTitle: "Direito",
             items: topCourses,
+            seeAllRoute: "/courses",
         },
     ];
 
@@ -43,6 +44,7 @@ export default function Home () {
                     subTitle={course.subTitle}
                     courses={course.items}
                     hidePagination
+                    seeAllRoute={course.seeAllRoute}
                 />
             ))}
         </div>

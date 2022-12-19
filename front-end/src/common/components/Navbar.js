@@ -11,7 +11,7 @@ import { logout } from '../../store/user.js';
 const whatsAppLink = 'https://api.whatsapp.com/send/?phone=552140032140&text=Oi,%20me%20ajuda%20aqui...%20';
 
 export default function Navbar() {
-  const userCredentials = useSelector((state) => state.user.user);
+  const userCredentials = useSelector((state) => state.user.value.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
