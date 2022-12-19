@@ -7,8 +7,8 @@ export default function CrudCourse({id}) {
   const dispatch = useDispatch();
 
   return (
-    <div className="mb-2 d-flex w-100 justify-content-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      <button className="bg-transparent border-0 text-warning">
+    <div className="mb-2 d-flex w-100 justify-content-end">
+      <button className="bg-transparent border-0 text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <FontAwesomeIcon icon="pen" className='me-2'/>
       </button>
 
