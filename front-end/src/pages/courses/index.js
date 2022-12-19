@@ -17,6 +17,9 @@ export default function Home () {
     const courses = courseState.items;
     const dispatch = useDispatch();
 
+    const userCredentials = useSelector((state) => state.user.value.user);
+    const isAdmin = userCredentials?.role === "admin";
+
     const [searchParams] = useSearchParams();
     const searchParam = searchParams.get('s');
     const currentPage = searchParams.get('page') || 1;
@@ -38,6 +41,12 @@ export default function Home () {
                     </MainTitle>
                     
                     <DropdownCategories />
+
+                    {isAdmin ? (
+                        <button className="btn btn-success mt-3">
+                            Criar novo
+                        </button>
+                    ): null}
                 </div>
 
                 <div className="py-5"></div>

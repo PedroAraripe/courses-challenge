@@ -15,6 +15,8 @@ import {
   faSearch,
   faSignOut,
   faLock,
+  faTrash,
+  faPen,
 } from '@fortawesome/free-solid-svg-icons';
 
 import './styles/global.css';
@@ -35,6 +37,8 @@ library.add(
   faSearch,
   faSignOut,
   faLock,
+  faTrash,
+  faPen,
 )
 
 const WrapperContainerX = styled.div`

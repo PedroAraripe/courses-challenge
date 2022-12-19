@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { DescriptionCard, TitleCard, WrapperCard } from '../styles';
+import CrudCourse from './CrudCourse';
 
 const AccessContentButton = styled.div`
   text-decoration: none;
@@ -37,6 +38,9 @@ export default function CardCoursePreview ({
     return (
       <WrapperCard className="p-4 mb-4 d-flex flex-column justify-content-between">
         <div>
+          {isAdmin ? (
+            <CrudCourse id={id} />
+          ) : null}
           <TitleCard className='mb-4'>
             {name}
           </TitleCard>
