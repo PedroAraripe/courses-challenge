@@ -3,14 +3,13 @@ import {
   Routes,
   Route,
   HashRouter as Router,
-  useSearchParams,
 } from "react-router-dom";
 
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { getUserInStorage } from "./store/user";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import Navbar from "./common/components/Navbar";
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
-import { clearCourse, createCourse, getCourses } from "../../store/courses";
+import { clearCourse, createCourse, getCourses, updateCourse } from "../../store/courses";
 
 import ContainerSpacement from '../../common/components/ContainerSpacement';
 import Pagination from '../../common/components/Paginator';
@@ -9,7 +9,7 @@ import DropdownCategories from '../../common/components/DropdownCategories';
 import CardCoursePreview from '../../common/components/CardCoursePreview';
 
 import { perPage } from '../../common/constants/pagination';
-import { InputComp, MainTitle } from '../../common/styles';
+import { InputComp, MainTitle, TextAreaComp } from '../../common/styles';
 import NotFoundSearch from '../../common/components/NotFoundSearch';
 
 import { courses as coursesData } from "../../store/courses"
@@ -25,13 +25,16 @@ export default function Home () {
     const hasCurrentCourse = currentCourse && Object?.keys(currentCourse)?.length;
 
     const {
-        currentCourseName,
-        currentCourseDescription,
-        currentCourseUrl
+        id : currentCourseId,
+        name : currentCourseName,
+        description: currentCourseDescription,
+        url: currentCourseUrl,
+        categoryId: currentCourseCategoryId,
     } = hasCurrentCourse ? currentCourse : {
         name: "",
         description: "",
         url: "",
+        categoryId: "",
     };
 
     const userCredentials = useSelector((state) => state.user.value.user);
@@ -74,14 +77,56 @@ export default function Home () {
 
         console.log({inputValues})
     
-        toast.success('Curso criado com sucesso!', toastConfig);
+        toast.success('Curso  com sucesso!', toastConfig);
     
         dispatch(createCourse(inputValues));
-      }
+    }
+
+    const handleUpdate = (event) => {
+        event.preventDefault();
+    
+        const form = document.querySelector("#modal-form");
+    
+        const name = form[0].value;
+        const description = form[1].value;
+        const url = form[2].value;
+
+        if(!(name && description && url && categoryToCreate)) {
+          return toast.error('Preencha todos os campos.', toastConfig);
+          
+        }
+
+        const inputValues = {
+            id: currentCourseId,
+            name,
+            description,
+            url,
+            categoryId: categoryToCreate
+        }
+
+        toast.success('Curso atualizado com sucesso!', toastConfig);
+    
+        dispatch(updateCourse(inputValues));
+    }
     
     useEffect(() => {
         dispatch(getCourses({start, end, category, search: searchParam}));
     }, [category, currentPage, searchParam, coursesData]);
+    
+    useEffect(() => {
+        if(hasCurrentCourse) {
+            
+            const form = document.querySelector("#modal-form");
+            const name = form[0];
+            const description = form[1];
+            const url = form[2];
+
+            name.value = currentCourseName;
+            description.value = currentCourseDescription;
+            url.value = currentCourseUrl;
+            setCategoryToCreate(currentCourseCategoryId)
+        }
+    }, [hasCurrentCourse]);
     
     return (
         <ContainerSpacement>
@@ -95,34 +140,34 @@ export default function Home () {
                 </div>
                 <form onSubmit={submitHandler} id="modal-form" className="modal-body">
                     <InputComp
-                    placeholder="Título"
-                    type="text"
-                    name="name"
-                    title="name"
-                    className='w-100 p-3'
+                        placeholder="Título"
+                        type="text"
+                        name="name"
+                        title="name"
+                        className='w-100 p-3'
+                    />
+                    <TextAreaComp
+                        placeholder="Descrição"
+                        type="text"
+                        name="description"
+                        title="description"
+                        className='w-100 p-3'
                     />
                     <InputComp
-                    placeholder="Descrição"
-                    type="text"
-                    name="description"
-                    title="description"
-                    className='w-100 p-3'
-                    />
-                    <InputComp
-                    placeholder="Url"
-                    type="text"
-                    name="url"
-                    title="Url"
-                    className='w-100 p-3'
+                        placeholder="Url"
+                        type="text"
+                        name="url"
+                        title="Url"
+                        className='w-100 p-3'
                     />
 
                     <div className='w-100 p-3'>
-                    <DropdownCategories id={1} passValue={true} setCategory={setCategoryToCreate} />
+                    <DropdownCategories id={1} passValue={true} initialCategory={currentCourseCategoryId} setCategory={setCategoryToCreate} />
                     </div>
                 </form>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" className="btn btn-success" onClick={handleCreate}>Salvar</button>
+                    <button type="button" className="btn btn-success" onClick={!hasCurrentCourse? handleCreate : handleUpdate}>Salvar</button>
                 </div>
                 </div>
             </div>

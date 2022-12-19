@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { getCategories } from "../../store/categories";
 import { WrapperDropdownCategorie } from "../styles";
 
-export default function DropdownCategories({passValue, id, setCategory}) {
+export default function DropdownCategories({passValue, id, setCategory, initialCategory}) {
   const categories = useSelector((state) => state.categories.value);
   const [dropdownText, setDropdownText] = useState('Todas');
   const dispatch = useDispatch();
@@ -12,10 +12,11 @@ export default function DropdownCategories({passValue, id, setCategory}) {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = searchParams.get('page') || 1;
   const searchParam = searchParams.get('s');
-  const category = passValue ? "" : searchParams.get('category');
+  const category = setCategory && initialCategory ? initialCategory : searchParams.get('category');
+  
 
   useEffect(() => {
-    dispatch(getCategories())
+    dispatch(getCategories());
 }, [])
 
   useEffect(() => {

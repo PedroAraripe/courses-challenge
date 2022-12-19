@@ -187,6 +187,45 @@ export const coursesSlice = createSlice({
         id: courses.length
       })
     },
+    updateCourse: (state, action) => {
+      const {
+        id,
+        name,
+        categoryId,
+        url,
+        description,
+      } = action?.payload;
+
+      const updatedItem = {
+        name,
+        categoryId,
+        url,
+        description,
+      }
+
+      courses = JSON.parse(JSON.stringify(courses)).map(course => {
+        if(course.id == id) {
+          console.log("achou", course, Object.entries(updatedItem))
+          Object.keys(updatedItem).map(key => {
+            course[key] = updatedItem[key];
+          })
+        }
+
+        return course;
+      });
+
+      state.courses.items = JSON.parse(JSON.stringify(state.courses.items)).map(course => {
+        if(course.id == id) {
+          Object.keys(updatedItem).map(key => {
+            course[key] = updatedItem[key];
+          })
+        }
+
+        return course;
+      });
+
+      state.total = state.courses.items.length;
+    },
   },
 })
 
@@ -197,6 +236,7 @@ export const {
   getCourse,
   clearCourse,
   createCourse,
+  updateCourse,
 } = coursesSlice.actions
 
 export default coursesSlice.reducer
